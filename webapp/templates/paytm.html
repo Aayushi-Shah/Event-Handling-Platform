@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PAYTM</title>
+	    <meta charset="utf-8"> 
+		<link rel="shortcut icon" type="image/x-icon" href="../static/paytm_icon.png" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<!-- Popper JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			function update_values(){
+			 	$.ajax({url: "/get_prices/paytm", success: function(result){
+					$("#product1_price").html(result['product1']);
+					$("#product2_price").html(result['product2']);
+					$("#product3_price").html(result['product3']);
+					$("#product4_price").html(result['product4']);
+				}});
+			}
+			var priceChange = setInterval(update_values, 10000);
+		</script>
+	</head>
+	<body>
+  	<h1 class="text-center">PAYTM</h1>
+  	<h2 class="text-center">Fossil Watches</h2>
+  	<div class="container">
+		<div class="row">
+	  	<div class="card col-md-5" style="width:400px">
+		  <img class="card-img-top" src="../static/boyfriendwatch1.jpg" alt="Card image">
+		  <div class="card-body">
+		    <h4 class="card-title">ORIGINAL BOYFRIEND CHRONOGRAPH NAVY LEATHER WATCH</h4>
+			  <p class="card-text"><img src="../static/rupee.png"><span id="product1_price">{{price['product1']}}</span></p>
+		    <a href="#" class="btn btn-primary">Details</a>
+		  </div>
+		</div>
+		<div  class="col-md-1"></div>
+	  	<div class="card col-md-5" style="width:400px">
+		  <img class="card-img-top" src="../static/boyfriendwatch2.jpg" alt="Card image">
+		  <div class="card-body">
+		    <h4 class="card-title">ORIGINAL BOYFRIEND CHRONOGRAPH BLACK LEATHER WATCH</h4>
+			  <p class="card-text"><img src="../static/rupee.png"><span id="product2_price">{{price['product2']}}</span></p>
+		    <a href="#" class="btn btn-primary">Details</a>
+		  </div>
+		</div>
+	  	<div class="card col-md-5" style="width:400px">
+		  <img class="card-img-top" src="../static/boyfriendwatch3.jpg" alt="Card image">
+		  <div class="card-body">
+		    <h4 class="card-title">ORIGINAL BOYFRIEND AUTOMATIC NAVY LEATHER WATCH</h4>
+			  <p class="card-text"><img src="../static/rupee.png"><span id="product3_price">{{price['product3']}}</span></p>
+		    <a href="#" class="btn btn-primary">Details</a>
+		  </div>
+		</div>		
+		<div  class="col-md-1"></div>
+	  	<div class="card col-md-5" style="width:400px">
+		  <img class="card-img-top" src="../static/boyfriendwatch4.jpg" alt="Card image">
+		  <div class="card-body">
+		    <h4 class="card-title">ORIGINAL BOYFRIEND AUTOMATIC GRAY LEATHER WATCH</h4>
+			  <p class="card-text"><img src="../static/rupee.png"><span id="product4_price">{{price['product4']}}</span></p>
+		    <a href="#" class="btn btn-primary">Details</a>
+		  </div>
+		</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="shortcut icon" type="image/x-icon" href="../static/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>EP Team Project</title>
+  <!-- Bootstrap core CSS-->
+  <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom styles for this template-->
+  <link href="../static/css/sb-admin.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <script type="text/javascript">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+          alert("{{ message }}");            
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+  </script>
+  <script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        // Handle page restore.
+        window.location.reload();
+      }
+    });
+  </script>
+</head>
+
+<body class="bg-dark" background="../static/hero.png" background-repeat="no-repeat" style="background-size:1200px; background-position: all;font-family: 'Ubuntu';opacity: 0.9;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/" style="font-size:30px">Event Processing Platform</a>
+      </div>
+  </nav>
+  <div class="row">
+  <div class="container col-md-6">
+    <div class="card card-text mx-auto mt-5" style="border: 0">
+      <h1 style="color:white; font-size:50px;text-align: justify;"><b>Automate your Apps</b></h1>
+      <p style="font-size: 30px; color:rgb(227,224,228);text-align: justify;">We automate your various apps so you don't have to do it</p> 
+    </div>
+  </div>
+  <div class="container col-md-6">
+    <div class="card card-login mx-auto mt-5" style="width:400px;">
+      <div class="card-header {{category}}">
+         Login     
+      </div>
+        
+      
+        <div class="card-body">
+          <form id="gplusform" action="gpluslogin"></form>
+          <form method="POST" action="/login">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input class="form-control" id="email" type="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" required="true">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input class="form-control" id="password" name="password" type="password" placeholder="Password" required="true">
+            </div>
+            
+            <div class="form-group">
+              <button class="btn btn-primary btn-block" type="submit">Login</button>
+            </div>
+            <div class="form-group">              
+              <button class="btn btn-block btn-danger " type="submit" form="gplusform"><i class="fab fa-google-plus-g"></i> Sign in with Google</button>
+            </div>
+          </form>
+          <div class="text-center">
+            <a href="/register">Register yourself here</a><br>
+            <!--a href="/forgot_password">Forgot Password?</a-->
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Invalid Login</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Invalid username or password</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="/logout">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="../static/vendor/jquery/jquery.min.js"></script>
+  <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="shortcut icon" type="image/x-icon" href="../static/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>EP-Team Project</title>
+  <!-- Bootstrap core CSS-->
+  <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <!-- Custom fonts for this template-->
+  <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" crossorigin="anonymous">
+  <!-- Page level plugin CSS-->
+  <link href="../static/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" crossorigin="anonymous">
+  <!-- Custom styles for this template-->
+  <link href="../static/css/sb-admin.min.css" rel="stylesheet" crossorigin="anonymous">
+  <script type="text/javascript">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+          alert("{{ message }}");            
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+  </script>
+  </head>
+  <body class="fixed-nav sticky-footer bg-dark" id="page-top">
+  <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <a class="navbar-brand" href="/flows">Event Handling Platform</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-cloud"></i>
+            <span class="nav-link-text">Create Flows</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseComponents">
+            <li>
+              <a href="/flows">Choose Templates</a>
+            </li>
+            <li>
+              <a href="/customflows">Customize Flows</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="/yourflows">
+            <i class="fa fa-fw fa-briefcase"></i>
+            <span class="nav-link-text">Your Flows</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal" href="/logout">
+            <i class="fa fa-fw fa-sign-out"></i>
+            <span class="nav-link-text">Logout</span></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav sidenav-toggler">
+        <li class="nav-item">
+          <a class="nav-link text-center" id="sidenavToggler">
+            <i class="fa fa-fw fa-angle-left"></i>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto text-white">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle mr-lg-5" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-fw fa-user"></i>
+            <span>Welcome {{session['name']}}</span>
+            <span class="d-lg-none">User Details</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+            <h6 class="dropdown-header">Account Settings:</h6>
+            <div class="dropdown-divider"></div>
+            
+            <a class="dropdown-item" href="/change_password"><i class= "fa fa-fw fa-lock"></i> 
+              Change Password
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="/customflows">Custom Flows</a>
+        </li>
+      </ol>
+      
+  <form method="POST" action="/customflows">
+        <div class="form-group">
+            <label for="name">Name of the flow</label>
+            <input type="text" class="form-control" name="name" id="name" aria-describedby="websiteHelp" placeholder="Enter Flow Name" required="true">
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-5 col-sm-10 left">
+                <div class="form-group">
+                <label for="input">Select Input Source</label>
+                  <select class="form-control" name="input" id="input"  required="true">
+                    <option>Select Input Source</option>
+                    <option>TWITTER</option>
+                    <option>MQTT</option>
+                    <option>WEBSCRAPER</option>
+                  </select>
+                </div>
+                <div class="form-group" id="input-form">
+                </div>
+            </div>
+            <div class="form-group col-lg-5 col-sm-10 right">
+                <div class="form-group">
+                <label for="output">Select Output Target</label>
+                  <select class="form-control" name="output" id="output" required="true">
+                    <option>Select Output Target</option>
+                    <option>MONGODB</option>
+                    <option >EMAIL</option>
+                  </select>
+                </div>
+                <div class="form-group" id="output-form">                   
+                </div>
+            </div>
+        </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</div>
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script>
+        $('#input').on("change",function() {
+        	// alert($(this).val());
+   if( $(this).val() == 'Select Input Source'){
+        $("#input-form").replaceWith(' <div class="form-group" id="input-form"></div>');
+    }
+   else if( $(this).val() == 'TWITTER'){
+        $("#input-form").replaceWith(' <div class="form-group" id="input-form"> <div class="form-group"> <label for="query">Query String</label> <input type="text" class="form-control" name="query" id="query" aria-describedby="websiteHelp" placeholder="Enter Query String" required> </div><div class="form-group"> <label for="sentiment-score">Sentiment Score</label> <select class="form-control" name="sentiment-score" id="sentiment-score"  required> <option>POSITIVE</option> <option>NUETRAL</option> <option>NEGATIVE</option> </select> </div> </div>');
+    }
+   else if ($(this).val() == 'MQTT')
+   {
+        $("#input-form").replaceWith('<div class="form-group" id="input-form"> <div class="form-group"> <label for="query">Server</label> <input type="text" class="form-control" name="server" id="server" aria-describedby="websiteHelp" placeholder="Enter Server Address" required> </div> <div class="form-group"> <label for="query">Port</label> <input type="number" class="form-control" name="port" id="port" aria-describedby="websiteHelp" placeholder="Enter Port" required> </div> <div class="form-group"> <label for="query">Topic</label> <input type="text" class="form-control" name="topic" id="topic" aria-describedby="websiteHelp" placeholder="Enter Topic" required>  </div>  <div class="form-group">  <label for="sentiment-score">QoS</label>  <select class="form-control" name="qos" id="qos"  required>  <option>0</option>  <option>1</option>  <option>2</option>  </select>  </div> <div class="form-group">  <label for="query">Property</label>  <input type="text" class="form-control" name="property" id="property" aria-describedby="websiteHelp" placeholder="payload" required>  </div> <div class="form-group">  <label for="operator">Operator</label>  <select class="form-control" name="operator" id="operator"  required>  <option>eq</option>  <option>neq</option> <option>lt</option> <option>lte</option>  <option>gt</option> <option>gte</option> <option>cont</option> </select>  </div> <div class="form-group">  <label for="value">Value</label>  <input type="text" class="form-control" name="value" id="value" aria-describedby="websiteHelp" placeholder="Value" required> </div> </div>');
+   }
+   else if ($(this).val() == 'WEBSCRAPER')
+   {
+        $("#input-form").replaceWith('<div class="form-group" id="input-form"> <div class="form-group"> <label for="repeat-interval">Repeat Interval</label> <input type="number" class="form-control" name="repeat" id="repeat" aria-describedby="repeatHelp" placeholder="Enter time in seconds" required> </div><div class="form-group"> <label for="websiteAddress">Website address</label> <input type="url" class="form-control" name="url" id="url" aria-describedby="websiteHelp" placeholder="Enter Website address" required> </div> <div class="form-group"> <label for="fieldElement">Field Element</label> <input type="text" class="form-control" name="field" id="field" aria-describedby="fieldHelp" placeholder="Enter element" required> </div> </div>');
+   }
+});
+
+$('#output').on("change",function() {
+	// alert($(this).val());
+   if( $(this).val() == 'Select Output Target'){
+        $("#output-form").replaceWith(' <div class="form-group" id="output-form"></div>');
+    }
+   else if( $(this).val() == 'MONGODB'){
+        $("#output-form").replaceWith('<div class="form-group" id="output-form"> <div class="form-group"> <label for="mongodbURI">MongoDB URI</label> <input type="text" class="form-control" name="mongodburi" id="mongodburi" aria-describedby="mongodbHelp" placeholder="Enter Mongodb URI" required> </div> <div class="form-group"> <label for="dbname">Database Name</label> <input type="text" class="form-control" name="dbname" id="dbname" aria-describedby="dbHelp" placeholder="Enter database name"> </div> <div class="form-group" required> <label for="collectionName">Collection Name</label> <input type="text" class="form-control" name="collectionname" id="collectionname" aria-describedby="collectionHelp" placeholder="Enter collection name" required> </div> </div>');
+    }
+   else if ($(this).val() == 'EMAIL')
+   {
+        $("#output-form").replaceWith('<div class="form-group" id="output-form"> <div class="form-group"> <label for="emailAddress">Email address</label> <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email address" required> </div> <div class="form-group"> <label for="subject">Subject</label> <input type="text" class="form-control" id="subject" name="subject" aria-describedby="subjectHelp" placeholder="Enter Subject" required> </div> </div>');
+   }
+});
+    </script>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="/logout">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
